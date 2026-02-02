@@ -58,7 +58,7 @@ function App() {
   const [activePage, setActivePage] = useState<NavPage>('home');
   
   // Filter States
-  const [radius] = useState(0);
+  const [radius, setRadius] = useState(30); /* Default radius 30km */
   const [searchTerm, setSearchTerm] = useState("");
   const [searchLocation, setSearchLocation] = useState<[number, number] | null>(null);
   const [jobTypeFilter, setJobTypeFilter] = useState("Tous");
@@ -170,6 +170,11 @@ function App() {
               onSelectJob={setSelectedJob}
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
+              onLocationSelect={(coords) => {
+                setSearchLocation(coords);
+                /* Ensure radius is active when explicit location picked */
+                if (radius === 0) setRadius(30); 
+              }}
             />
 
             <main className="content-area">

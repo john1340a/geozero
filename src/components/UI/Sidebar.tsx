@@ -16,6 +16,7 @@ interface SidebarProps {
   onSelectJob: (job: JobOffer) => void;
   searchTerm: string;
   onSearchChange: (v: string) => void;
+  onLocationSelect?: (coords: [number, number]) => void;
 }
 
 // Material Symbols Icon (Rounded variant)
@@ -33,7 +34,8 @@ export const Sidebar = ({
   selectedJobId, 
   onSelectJob,
   searchTerm,
-  onSearchChange
+  onSearchChange,
+  onLocationSelect
 }: SidebarProps) => {
   const [citySuggestions, setCitySuggestions] = useState<CityResult[]>([]);
   const [showCityDropdown, setShowCityDropdown] = useState(false);
@@ -125,7 +127,7 @@ export const Sidebar = ({
             onChange={(e) => onSearchChange(e.target.value)}
             onFocus={() => citySuggestions.length > 0 && setShowCityDropdown(true)}
             className="search-input"
-            style={{padding: '12px 16px 12px 44px'}} // Slightly adjust input padding if needed
+            style={{padding: '12px 16px 12px 48px'}} /* Increased left padding for icon space */
           />
           {isSearching && (
             <span className="search-loading material-symbols-rounded">progress_activity</span>
@@ -138,7 +140,13 @@ export const Sidebar = ({
                 <button
                   key={index}
                   className="dropdown-item"
-                  onClick={() => handleCitySelect(city)}
+                  onClick={() => {
+                    handleCitySelect(city);
+                    // Pass coordinates directly if available
+                    if (onLocationSelect && city.coordinates) {
+                      onLocationSelect(city.coordinates);
+                    }
+                  }}
                 >
                   <Icon name="location_on" size={18} />
                   <span>{city.name}</span>
