@@ -34,6 +34,11 @@ export const DEPARTMENTS: Record<string, string> = Object.fromEntries(
   Object.entries(DEPARTMENT_DATA).map(([code, info]) => [code, info.name])
 );
 
+// Reverse mapping for Name -> Code (Name normalization: lowercase, trimmed)
+export const NAME_TO_CODE: Record<string, string> = Object.fromEntries(
+  Object.entries(DEPARTMENT_DATA).map(([code, info]) => [info.name.toLowerCase(), code])
+);
+
 // Initialize DB (can be called multiple times, handles itself)
 export const ensureDatabaseLoaded = async () => {
     return initCityDatabase();

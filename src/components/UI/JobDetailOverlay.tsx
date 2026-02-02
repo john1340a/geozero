@@ -1,5 +1,5 @@
 import type { JobOffer } from "../../types/job";
-import { DEPARTMENTS } from "../../services/geocoding";
+import { DEPARTMENTS, NAME_TO_CODE } from "../../services/geocoding";
 
 interface JobDetailOverlayProps {
   job: JobOffer;
@@ -17,7 +17,12 @@ export const JobDetailOverlay = ({ job, onClose }: JobDetailOverlayProps) => {
   const typeColors = getJobTypeColor(job.type);
 
   const formatLocation = (city: string, dept: string) => {
-    if (city) return `${city} (${dept})`;
+    if (city && dept) return `${city} (${dept})`;
+    if (city && !dept) {
+        const inferredCode = NAME_TO_CODE[city.toLowerCase()];
+        if (inferredCode) return `${city} (${inferredCode})`;
+        return city;
+    }
     if (dept) {
         const deptName = DEPARTMENTS[dept.padStart(2, '0')];
         return deptName ? `${deptName} (${dept})` : `Département ${dept}`;

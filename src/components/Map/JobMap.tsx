@@ -3,14 +3,15 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-le
 import L from 'leaflet';
 import type { JobOffer } from '../../types/job';
 
-// Custom Marker Icon - Green gradient circles like the inspiration
+// Custom Marker Icon - Graphite/Dark Grey gradient circles like the inspiration
 const createCustomIcon = (type: string) => {
-  let gradient = 'linear-gradient(135deg, #86efac, #22c55e)';
-  let shadow = 'rgba(34, 197, 94, 0.4)';
+  // Default / Stage = Graphite (Modern Dark)
+  let gradient = 'linear-gradient(135deg, #52525b, #27272a)'; // Zinc 600 -> Zinc 800
+  let shadow = 'rgba(39, 39, 42, 0.4)';
   
   if (type.toLowerCase().includes("stage")) {
-    gradient = 'linear-gradient(135deg, #86efac, #22c55e)';
-    shadow = 'rgba(34, 197, 94, 0.4)';
+    gradient = 'linear-gradient(135deg, #52525b, #27272a)';
+    shadow = 'rgba(39, 39, 42, 0.4)';
   } else if (type.toLowerCase().includes("cdd")) {
     gradient = 'linear-gradient(135deg, #fde68a, #f59e0b)';
     shadow = 'rgba(245, 158, 11, 0.4)';
@@ -78,9 +79,9 @@ export const JobMap = ({ jobs, selectedJob, onSelectJob, searchLocation, radius 
           center={searchLocation} 
           radius={radius * 1000}
           pathOptions={{ 
-            fillColor: '#22c55e', 
+            fillColor: '#27272a', 
             fillOpacity: 0.15, 
-            color: '#22c55e', 
+            color: '#27272a', 
             weight: 2,
             opacity: 0.6
           }}

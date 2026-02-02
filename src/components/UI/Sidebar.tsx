@@ -1,6 +1,14 @@
 import { useMemo, useState, useEffect } from 'react';
 import type { JobOffer } from "../../types/job";
-import { searchCities, type CityResult, DEPARTMENTS } from "../../services/geocoding";
+import { searchCities, type CityResult, DEPARTMENTS, NAME_TO_CODE } from "../../services/geocoding";
+
+// ... (props interface)
+
+// ... (Icon component)
+
+// ... (inside Sidebar component)
+
+
 
 interface SidebarProps {
   jobs: JobOffer[];
@@ -73,11 +81,23 @@ export const Sidebar = ({
   };
 
   const formatLocation = (city: string, dept: string) => {
-    if (city) return `${city} (${dept})`;
+    // If we have both, perfect
+    if (city && dept) return `${city} (${dept})`;
+    
+    // If only city (might be a region/department name like "Guyane")
+    if (city && !dept) {
+        // Try to find if the city is actually a department name
+        const inferredCode = NAME_TO_CODE[city.toLowerCase()];
+        if (inferredCode) return `${city} (${inferredCode})`;
+        return city;
+    }
+
+    // If only department code
     if (dept) {
         const deptName = DEPARTMENTS[dept.padStart(2, '0')];
         return deptName ? `${deptName} (${dept})` : `Département ${dept}`;
     }
+    
     return "";
   };
 
