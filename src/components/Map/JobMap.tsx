@@ -6,22 +6,22 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 
 // Custom Marker Icon - Graphite/Dark Grey gradient circles like the inspiration
 const createCustomIcon = (type: string) => {
-  // Default / Stage = Graphite (Modern Dark)
-  let color = '#52525b'; // Zinc 600
-  let shadowColor = 'rgba(82, 82, 91, 0.3)'; // Lighter, transparent
+  // Default = Slate (Neutral Gray)
+  let color = '#94a3b8'; // Slate 400
+  let shadowColor = 'rgba(148, 163, 184, 0.3)';
   
   if (type.toLowerCase().includes("stage")) {
-    color = '#22c55e'; 
-    shadowColor = 'rgba(34, 197, 94, 0.3)';
+    color = '#5eead4'; // Teal 300 (Soft)
+    shadowColor = 'rgba(94, 234, 212, 0.3)';
   } else if (type.toLowerCase().includes("cdd")) {
-    color = '#f59e0b';
-    shadowColor = 'rgba(245, 158, 11, 0.3)';
+    color = '#fcd34d'; // Amber 300 (Soft)
+    shadowColor = 'rgba(252, 211, 77, 0.3)';
   } else if (type.toLowerCase().includes("cdi")) {
-    color = '#ef4444';
-    shadowColor = 'rgba(239, 68, 68, 0.3)';
-  } else if (type.toLowerCase().includes("freelance")) {
-    color = '#8b5cf6';
-    shadowColor = 'rgba(139, 92, 246, 0.3)';
+    color = '#fda4af'; // Rose 300 (Soft)
+    shadowColor = 'rgba(253, 164, 175, 0.3)';
+  } else if (type.toLowerCase().includes("freelance") || type.toLowerCase().includes("alternance")) {
+    color = '#c4b5fd'; // Violet 300 (Soft)
+    shadowColor = 'rgba(196, 181, 253, 0.3)';
   }
 
   return L.divIcon({
@@ -57,7 +57,7 @@ const createClusterCustomIcon = (cluster: any) => {
       <div style="
         width: ${dims}px;
         height: ${dims}px;
-        background: #000000; /* Simple Black */
+        background: #52525b; /* Zinc 600 */
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 50%;
         color: white;

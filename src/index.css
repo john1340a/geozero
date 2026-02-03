@@ -27,11 +27,8 @@ html, body, #root {
   overscroll-behavior: none;
   font-family: 'Urbanist', sans-serif; /* Update to Urbanist */
   font-weight: 400; /* Default readable weight */
-  background: 
-    radial-gradient(circle at 15% 85%, rgba(34, 197, 94, 0.25) 0%, transparent 45%),
-    radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.15) 0%, transparent 60%),
-    linear-gradient(135deg, #f8fdf9 0%, #f0fdf4 50%, #ecfdf5 100%);
+  /* Background: Verre d'eau (Water Glass) - Soft Teal/Clean */
+  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); /* Teal 50 -> Teal 100 */
 }
 
 /* ============================================
@@ -63,8 +60,8 @@ html, body, #root {
 .nav-logo {
   width: 44px;
   height: 44px;
-  /* Graphite Gradient */
-  background: linear-gradient(135deg, #27272a, #18181b);
+  /* Graphite/Zinc Solid */
+  background: #52525b;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -74,6 +71,7 @@ html, body, #root {
   font-size: 20px;
   margin-bottom: 24px;
   box-shadow: 0 4px 12px rgba(39, 39, 42, 0.4);
+  font-weight: 200; /* Thinner weight for logo text */
 }
 
 .nav-items {
@@ -116,7 +114,7 @@ html, body, #root {
 /* ... */
 
 .nav-item.active {
-  background: #000000;
+  background: #52525b;
   color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -167,10 +165,6 @@ html, body, #root {
 }
 
 /* Using Thin 100 for large decorative text if any exists, usually logos or big headers */
-.nav-logo {
-  /* ... */
-  font-weight: 200; /* Thinner weight for logo text */
-}
 
 .btn-apply:hover {
   background: white;
@@ -377,9 +371,9 @@ html, body, #root {
 }
 
 .filter-pill.active {
-  background: #000000;
+  background: #52525b;
   color: white;
-  border-color: #000000;
+  border-color: #52525b;
 }
 
 .filter-pill .material-symbols-outlined {
@@ -420,8 +414,8 @@ html, body, #root {
 }
 
 .dropdown-item.active {
-  background: var(--color-primary-light);
-  color: var(--color-primary-dark);
+  background: #f3f4f6;
+  color: var(--color-text);
   font-weight: 600;
 }
 
@@ -429,7 +423,7 @@ html, body, #root {
    BUTTONS
    ============================================ */
 .btn-apply {
-  background: #000000;
+  background: #52525b;
   color: white;
   border: none;
   padding: 8px 20px;
@@ -561,7 +555,7 @@ html, body, #root {
 .placeholder-icon {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #27272a, #18181b);
+  background: #52525b;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -602,7 +596,7 @@ html, body, #root {
 .progress-fill {
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, #27272a, #52525b);
+  background: #52525b;
   border-radius: 3px;
   animation: progress-pulse 2s ease-in-out infinite;
 }

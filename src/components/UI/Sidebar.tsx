@@ -70,11 +70,11 @@ export const Sidebar = ({
   }, [jobs, searchTerm]);
 
   const getJobTypeIcon = (type: string) => {
-    if (type.includes("Stage")) return { icon: "school", color: "#22c55e" };
-    if (type.includes("CDD")) return { icon: "schedule", color: "#f59e0b" };
-    if (type.includes("CDI")) return { icon: "work", color: "#ef4444" };
-    if (type.includes("Alternance")) return { icon: "pending_actions", color: "#8b5cf6" };
-    return { icon: "work_outline", color: "#6b7280" };
+    if (type.includes("Stage")) return { icon: "school", color: "#5eead4" }; // Teal 300
+    if (type.includes("CDD")) return { icon: "schedule", color: "#fcd34d" }; // Amber 300
+    if (type.includes("CDI")) return { icon: "work", color: "#fda4af" }; // Rose 300
+    if (type.includes("Alternance")) return { icon: "pending_actions", color: "#c4b5fd" }; // Violet 300
+    return { icon: "work_outline", color: "#94a3b8" }; // Slate 400
   };
 
   const handleCitySelect = (city: CityResult) => {
