@@ -34,18 +34,7 @@ export const JobDetailOverlay = ({ job, onClose }: JobDetailOverlayProps) => {
 
   return (
     <div 
-      className="glass-panel"
-      style={{
-        position: 'absolute',
-        top: '80px',
-        right: '16px',
-        bottom: '16px',
-        width: '400px',
-        zIndex: 500,
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden'
-      }}
+      className="job-detail-overlay glass-panel"
     >
       {/* Header */}
       <div style={{ 

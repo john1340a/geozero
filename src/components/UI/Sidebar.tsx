@@ -17,6 +17,7 @@ interface SidebarProps {
   searchTerm: string;
   onSearchChange: (v: string) => void;
   onLocationSelect?: (coords: [number, number]) => void;
+  className?: string;
 }
 
 // Material Symbols Icon (Rounded variant)
@@ -32,10 +33,11 @@ const Icon = ({ name, filled = false, size = 22 }: { name: string; filled?: bool
 export const Sidebar = ({ 
   jobs, 
   selectedJobId, 
-  onSelectJob,
-  searchTerm,
+  onSelectJob, 
+  searchTerm, 
   onSearchChange,
-  onLocationSelect
+  onLocationSelect,
+  className
 }: SidebarProps) => {
   const [citySuggestions, setCitySuggestions] = useState<CityResult[]>([]);
   const [showCityDropdown, setShowCityDropdown] = useState(false);
@@ -104,7 +106,7 @@ export const Sidebar = ({
   };
 
   return (
-    <aside className="job-panel">
+    <aside className={`job-panel ${className || ''}`}>
       {/* Header - Now floating glass panel matching Filter Bar */}
       <div 
         className="panel-header glass-panel" 
@@ -127,7 +129,7 @@ export const Sidebar = ({
             onChange={(e) => onSearchChange(e.target.value)}
             onFocus={() => citySuggestions.length > 0 && setShowCityDropdown(true)}
             className="search-input"
-            style={{padding: '12px 16px 12px 48px'}} /* Increased left padding for icon space */
+            style={{padding: '12px 40px 12px 42px'}} /* Balanced padding: Left for icon, Right for spinner */
           />
           {isSearching && (
             <span className="search-loading material-symbols-rounded">progress_activity</span>
@@ -148,7 +150,6 @@ export const Sidebar = ({
                     }
                   }}
                 >
-                  <Icon name="location_on" size={18} />
                   <span>{city.name}</span>
                 </button>
               ))}

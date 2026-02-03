@@ -87,6 +87,17 @@ interface JobMapProps {
   onSelectJob: (job: JobOffer) => void;
 }
 
+const MapResizer = () => {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+};
+
 const MapUpdater = ({ center, zoom }: { center: [number, number], zoom?: number }) => {
   const map = useMap();
   useEffect(() => {
@@ -185,6 +196,7 @@ export const JobMap = ({ jobs, selectedJob, onSelectJob, searchLocation, radius 
 
       {selectedJob?.coordinates && <MapUpdater center={selectedJob.coordinates} zoom={12} />}
       {searchLocation && !selectedJob && <MapUpdater center={searchLocation} zoom={9} />}
+      <MapResizer />
     </MapContainer>
     </>
   );

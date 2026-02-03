@@ -25,7 +25,6 @@ export const initCityDatabase = async () => {
 
   initPromise = (async () => {
       try {
-        console.log("Downloading French cities database...");
         const response = await fetch(
           "https://geo.api.gouv.fr/communes?fields=nom,codeDepartement,centre&format=json&geometry=centre"
         );
@@ -42,7 +41,6 @@ export const initCityDatabase = async () => {
         });
         
         isLoaded = true;
-        console.log(`City database loaded: ${cities.length} cities indexed.`);
       } catch (err) {
         console.error("Error loading city database:", err);
       }

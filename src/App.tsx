@@ -18,13 +18,21 @@ const Icon = ({ name, filled = false, size = 24 }: { name: string; filled?: bool
 );
 
 // Navigation pages
-type NavPage = 'home' | 'list' | 'jobs' | 'saved' | 'settings';
+type NavPage = 'home' | 'list' | 'jobs' | 'saved' | 'settings' | 'map';
 
 const NAV_ITEMS: { id: NavPage; icon: string; label: string }[] = [
   { id: 'home', icon: 'home', label: 'Accueil' },
   { id: 'list', icon: 'list_alt', label: 'Liste' },
   { id: 'jobs', icon: 'work', label: 'Emplois' },
   { id: 'saved', icon: 'bookmark', label: 'Favoris' },
+];
+
+// Mobile-specific nav items (includes map)
+const MOBILE_NAV_ITEMS: { id: NavPage; icon: string; label: string }[] = [
+  { id: 'home', icon: 'home', label: 'Accueil' },
+  { id: 'map', icon: 'map', label: 'Carte' },
+  { id: 'saved', icon: 'bookmark', label: 'Favoris' },
+  { id: 'settings', icon: 'settings', label: 'Paramètres' },
 ];
 
 // Placeholder page component
@@ -65,6 +73,10 @@ function App() {
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [locationFilter, setLocationFilter] = useState("");
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  
+  // Mobile States
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [showMobileMap, setShowMobileMap] = useState(false);
 
   // Function to load jobs
   const loadJobs = async (showLoadingIndicator = true) => {
@@ -175,9 +187,10 @@ function App() {
                 /* Ensure radius is active when explicit location picked */
                 if (radius === 0) setRadius(30); 
               }}
+              className={showMobileMap ? 'hidden-on-mobile' : ''}
             />
 
-            <main className="content-area">
+            <main className={`content-area ${showMobileMap ? 'mobile-visible' : ''}`}>
               <div className="filter-bar">
                 <div className="filter-dropdown-wrapper">
                   <button 
@@ -288,6 +301,30 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Mobile Header */}
+      <header className="mobile-header">
+        <div className="mobile-logo">G</div>
+        
+        {/* Expandable Search Bar */}
+        <div className={`mobile-search-container ${showMobileSearch ? 'expanded' : ''}`}>
+          <input
+            type="text"
+            className="mobile-search-input"
+            placeholder="Rechercher une ville..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+        <button 
+          className={`mobile-search-btn ${showMobileSearch ? 'active' : ''}`} 
+          onClick={() => setShowMobileSearch(!showMobileSearch)}
+        >
+          <Icon name={showMobileSearch ? "close" : "search"} size={20} />
+        </button>
+      </header>
+      
+      {/* Desktop Nav Bar */}
       <nav className="nav-bar">
         <div className="nav-logo">G</div>
         <div className="nav-items">
@@ -321,6 +358,33 @@ function App() {
           <p>Chargement des offres...</p>
         </div>
       )}
+      
+      {/* Mobile Bottom Nav */}
+      <nav className="mobile-nav">
+        {MOBILE_NAV_ITEMS.map(item => {
+          // Determine if this item is active - only ONE can be active
+          const isActive = item.id === 'map' 
+            ? showMobileMap 
+            : (!showMobileMap && activePage === item.id);
+          
+          return (
+            <button 
+              key={item.id}
+              className={`mobile-nav-item ${isActive ? 'active' : ''}`}
+              onClick={() => {
+                if (item.id === 'map') {
+                  setShowMobileMap(!showMobileMap);
+                } else {
+                  setShowMobileMap(false);
+                  setActivePage(item.id);
+                }
+              }}
+            >
+              <Icon name={item.icon} filled={isActive} />
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
