@@ -3,7 +3,7 @@ name: Build and Deploy to AlwaysData
 on:
   push:
     branches: [main]
-  workflow_dispatch: # Permet le déclenchement manuel
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -25,12 +25,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ALWAYSDATA_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.ALWAYSDATA_SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy via rsync
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -avzr --delete
-          path: dist/
-          remote_path: ${{ secrets.ALWAYSDATA_DEPLOY_PATH }}
-          remote_host: ${{ secrets.ALWAYSDATA_SSH_HOST }}
-          remote_user: ${{ secrets.ALWAYSDATA_SSH_USER }}
-          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+        run: |
+          rsync -avzr --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            dist/ \
+            ${{ secrets.ALWAYSDATA_SSH_USER }}@${{ secrets.ALWAYSDATA_SSH_HOST }}:${{ secrets.ALWAYSDATA_DEPLOY_PATH }}
