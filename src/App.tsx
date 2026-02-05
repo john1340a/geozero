@@ -372,6 +372,7 @@ function App() {
           return (
             <button 
               key={item.id}
+              data-testid={`mobile-nav-${item.id}`}
               className={`mobile-nav-item ${isActive ? 'active' : ''}`}
               onClick={() => {
                 if (item.id === 'map') {
