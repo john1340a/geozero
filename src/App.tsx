@@ -375,7 +375,14 @@ function App() {
               className={`mobile-nav-item ${isActive ? 'active' : ''}`}
               onClick={() => {
                 if (item.id === 'map') {
-                  setShowMobileMap(!showMobileMap);
+                  // If opening map, must go to home view where map lives
+                  if (!showMobileMap) {
+                      setActivePage('home');
+                      setShowMobileMap(true);
+                  } else {
+                      // If closing map, stay on home (or revert? home is fine)
+                      setShowMobileMap(false);
+                  }
                 } else {
                   setShowMobileMap(false);
                   setActivePage(item.id);
