@@ -5,6 +5,16 @@ test.describe('Mobile Navigation & Map', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test.beforeEach(async ({ page }) => {
+    // Mock RSS to avoid parsing errors or empty states
+    await page.route('/flux.rss', async route => {
+       await route.fulfill({ status: 200, contentType: 'application/xml', body: '<rss><channel><item><title>[CDI] Dev - Paris (75)</title><description>Desc</description></item></channel></rss>' });
+    });
+
+    // Mock Nominatim & BAN to prevent external network errors
+    await page.route('**nominatim.openstreetmap.org/**', async route => route.fulfill({ status: 200, body: '[]' }));
+    await page.route('**api-adresse.data.gouv.fr/**', async route => route.fulfill({ status: 200, body: '{"features":[]}' }));
+    await page.route('/communes.json', async route => route.fulfill({ status: 200, body: '[]' }));
+
     await page.goto('/');
     // Ensure we are in mobile view if running in non-mobile project, 
     // but the project config should handle this.
