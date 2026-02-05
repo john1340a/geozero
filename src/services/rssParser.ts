@@ -3,7 +3,8 @@ import type { JobOffer, RSSItem } from "../types/job";
 
 export const parseRSS = async (): Promise<JobOffer[]> => {
   try {
-    const response = await fetch("/flux.rss");
+    // Use proxy endpoint with timestamp to prevent caching
+    const response = await fetch(`/api/rss?t=${Date.now()}`);
     const text = await response.text();
     const parser = new XMLParser({
       ignoreAttributes: false,
@@ -44,11 +45,51 @@ const parseTitle = (rawTitle: string) => {
   // [CDD] Data (31) -- No city
   // [CDI] Ingénieur Bourges (18)  -- No separator
   
-  // 1. Extract Type [ ... ]
-  const typeMatch = rawTitle.match(/^\[(.*?)\]/);
-  const type = typeMatch ? typeMatch[1] : "Autre";
+  // 1. Extract Type [ ... ] or match keywords
+  let type = "Autre";
+
+  // Helper to detect type from a string
+  const detectType = (str: string): string | null => {
+    const s = str.toLowerCase();
+    if (s.includes("stage")) return "Stage";
+    if (s.includes("cdd")) return "CDD";
+    if (s.includes("cdi")) return "CDI";
+    if (s.includes("alternance") || s.includes("apprentissage") || s.includes("contrat pro")) return "Alternance";
+    if (s.includes("thèse") || s.includes("these")) return "Thèse";
+    if (s.includes("freelance") || s.includes("indépendant")) return "Freelance";
+    if (s.includes("intérim") || s.includes("interim")) return "Intérim";
+    return null;
+  };
+
+  // First try to analyze what's inside brackets [ ... ]
+  const bracketMatch = rawTitle.match(/^\[(.*?)\]/);
+  if (bracketMatch) {
+    const bracketContent = bracketMatch[1];
+    // Check if bracket content contains a known type
+    const detected = detectType(bracketContent);
+    if (detected) {
+      type = detected;
+    } else {
+      // If brackets exist but no keyword found (e.g. [Urgent]), usually keep as is or ignore?
+      // Let's fallback to searching the whole title if bracket didn't yield a known type
+      // Or assume the bracket IS the type but messy?
+      // User said "saisir [CDD 18 mois]". detectType("CDD 18 mois") returns "CDD". So it works.
+      // If user types "[Offre]", detectType returns null.
+      // In that case, we should probably search the Rest of the title.
+      // But for now, let's stick to: if brackets have a type, use it.
+      // If not, maybe use the bracket content as custom type? Or fallback to Autre?
+      // Let's fallback to full title search if bracket search fails.
+       const titleDetected = detectType(rawTitle);
+       if (titleDetected) type = titleDetected;
+       // Else remain "Autre" (or bracket content? No, normalized types are better).
+    }
+  } else {
+    // No brackets, search full title
+    const detected = detectType(rawTitle);
+    if (detected) type = detected;
+  }
   
-  // Remove type from string
+  // Remove type tag from string (only if it was in brackets at start)
   let remainder = rawTitle.replace(/^\[(.*?)\]\s*/, "");
 
   let department = "";

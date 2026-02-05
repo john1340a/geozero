@@ -8,9 +8,13 @@ interface JobDetailOverlayProps {
 
 export const JobDetailOverlay = ({ job, onClose }: JobDetailOverlayProps) => {
   const getJobTypeColor = (type: string) => {
-    if (type.includes("Stage")) return { bg: '#dcfce7', text: '#16a34a' };
-    if (type.includes("CDD")) return { bg: '#fef3c7', text: '#d97706' };
-    if (type.includes("CDI")) return { bg: '#fee2e2', text: '#dc2626' };
+    const lowerType = type.toLowerCase();
+    if (lowerType.includes("stage")) return { bg: '#dcfce7', text: '#16a34a' };
+    if (lowerType.includes("cdd")) return { bg: '#fef3c7', text: '#d97706' };
+    if (lowerType.includes("cdi")) return { bg: '#fee2e2', text: '#dc2626' };
+    if (lowerType.includes("alternance") || lowerType.includes("apprentissage")) return { bg: '#ede9fe', text: '#7c3aed' };
+    if (lowerType.includes("freelance")) return { bg: '#e0e7ff', text: '#4f46e5' };
+    if (lowerType.includes("intérim") || lowerType.includes("interim")) return { bg: '#ffedd5', text: '#ea580c' };
     return { bg: '#f3f4f6', text: '#6b7280' };
   };
 

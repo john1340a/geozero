@@ -22,6 +22,9 @@ const createCustomIcon = (type: string) => {
   } else if (type.toLowerCase().includes("freelance") || type.toLowerCase().includes("alternance")) {
     color = '#c4b5fd'; // Violet 300 (Soft)
     shadowColor = 'rgba(196, 181, 253, 0.3)';
+  } else if (type.toLowerCase().includes("intérim") || type.toLowerCase().includes("interim")) {
+    color = '#fdba74'; // Orange 300
+    shadowColor = 'rgba(253, 186, 116, 0.3)';
   }
 
   return L.divIcon({

@@ -72,10 +72,13 @@ export const Sidebar = ({
   }, [jobs, searchTerm]);
 
   const getJobTypeIcon = (type: string) => {
-    if (type.includes("Stage")) return { icon: "school", color: "#5eead4" }; // Teal 300
-    if (type.includes("CDD")) return { icon: "schedule", color: "#fcd34d" }; // Amber 300
-    if (type.includes("CDI")) return { icon: "work", color: "#fda4af" }; // Rose 300
-    if (type.includes("Alternance")) return { icon: "pending_actions", color: "#c4b5fd" }; // Violet 300
+    const lowerType = type.toLowerCase();
+    if (lowerType.includes("stage")) return { icon: "school", color: "#5eead4" }; // Teal 300
+    if (lowerType.includes("cdd")) return { icon: "schedule", color: "#fcd34d" }; // Amber 300
+    if (lowerType.includes("cdi")) return { icon: "work", color: "#fda4af" }; // Rose 300
+    if (lowerType.includes("alternance") || lowerType.includes("apprentissage")) return { icon: "pending_actions", color: "#c4b5fd" }; // Violet 300
+    if (lowerType.includes("freelance") || lowerType.includes("indépendant")) return { icon: "laptop_mac", color: "#a5b4fc" }; // Indigo 300
+    if (lowerType.includes("intérim") || lowerType.includes("interim")) return { icon: "timer", color: "#fdba74" }; // Orange 300
     return { icon: "work_outline", color: "#94a3b8" }; // Slate 400
   };
 
