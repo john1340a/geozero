@@ -1,15 +1,15 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* ============================================
    CSS VARIABLES
    ============================================ */
 :root {
   /* Modern "iPhone 12 Pro" Graphite / Dark Grey */
-  --color-primary: #27272a;      /* Zinc 800 */
+  --color-primary: #27272a; /* Zinc 800 */
   --color-primary-light: #52525b; /* Zinc 600 */
-  --color-primary-dark: #18181b;  /* Zinc 900 */
-  
+  --color-primary-dark: #18181b; /* Zinc 900 */
+
   --color-text: #1f2937;
   --color-text-muted: #6b7280;
   --color-bg-glass: rgba(255, 255, 255, 0.92);
@@ -20,15 +20,21 @@
 /* ============================================
    BASE STYLES
    ============================================ */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
-  font-family: 'Urbanist', sans-serif; /* Update to Urbanist */
+  font-family: "Urbanist", sans-serif; /* Update to Urbanist */
   font-weight: 400; /* Default readable weight */
   /* Background: Verre d'eau (Water Glass) - Soft Teal/Clean */
-  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); /* Teal 50 -> Teal 100 */
+  background: linear-gradient(
+    135deg,
+    #f0fdfa 0%,
+    #ccfbf1 100%
+  ); /* Teal 50 -> Teal 100 */
 }
 
 /* ============================================
@@ -135,11 +141,11 @@ html, body, #root {
 
 .btn-apply {
   background: rgba(255, 255, 255, 0.85); /* Slightly more transparent */
-  color: var(--color-primary); 
+  color: var(--color-primary);
   border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 8px 24px; /* Wider */
   border-radius: 20px;
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 600; /* Keep bold for readability on button, or try 500 */
   letter-spacing: 0.5px;
   font-size: 14px;
@@ -154,7 +160,7 @@ html, body, #root {
 /* ... */
 
 .job-title {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 18px; /* Larger */
   font-weight: 700; /* Bold title contrasts well with thin body */
   color: var(--color-text);
@@ -173,7 +179,7 @@ html, body, #root {
 }
 
 .nav-item.active .material-symbols-rounded {
-  font-variation-settings: 'FILL' 1;
+  font-variation-settings: "FILL" 1;
 }
 
 /* ============================================
@@ -489,7 +495,9 @@ html, body, #root {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-overlay p {
@@ -602,8 +610,13 @@ html, body, #root {
 }
 
 @keyframes progress-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .placeholder-progress span {
@@ -613,7 +626,9 @@ html, body, #root {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .search-wrapper {
@@ -631,11 +646,11 @@ html, body, #root {
 
 .search-input {
   width: 100%;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   font-family: inherit;
   font-size: 14px;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   transition: all 0.2s;
   outline: none;
 }
@@ -655,8 +670,6 @@ html, body, #root {
   pointer-events: none;
 }
 
-
-
 /* Dropdown */
 .search-dropdown {
   position: absolute;
@@ -665,13 +678,13 @@ html, body, #root {
   right: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   margin-top: 8px;
   padding: 8px;
   z-index: 1000;
   max-height: 240px;
   overflow-y: auto;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dropdown-item {
@@ -717,12 +730,18 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.15); /* Restored shadow */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15); /* Restored shadow */
 }
 
 @keyframes slideUp {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ============================================
@@ -738,11 +757,11 @@ html, body, #root {
   :root {
     --panel-width: 320px;
   }
-  
+
   .panel-header {
     padding: 16px;
   }
-  
+
   .job-list {
     padding: 12px 16px;
   }
@@ -762,28 +781,29 @@ html, body, #root {
   .job-detail-overlay {
     position: fixed !important;
     top: auto !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: 85vh !important;
-    border-radius: 24px 24px 0 0 !important;
+    left: 16px !important; /* Add margins */
+    right: 16px !important;
+    bottom: 80px !important; /* Above bottom nav */
+    width: auto !important;
+    height: 60vh !important; /* Reduced height */
+    border-radius: 20px !important; /* Round all corners */
     z-index: 2000 !important;
     animation: slideUp 0.3s ease-out;
     background: white !important; /* Solid background for legibility */
     pointer-events: auto !important; /* Enable interaction */
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
   }
 
   /* Hide Desktop Nav */
   .nav-bar {
     display: none;
   }
-  
+
   /* Hide Sidebar/Panel Header (Duplicate Search) */
   .panel-header {
     display: none !important;
   }
-  
+
   /* ============================================
      MOBILE HEADER
      ============================================ */
@@ -797,7 +817,7 @@ html, body, #root {
     top: 0;
     z-index: 1000;
   }
-  
+
   .mobile-logo {
     width: 36px;
     height: 36px;
@@ -809,9 +829,9 @@ html, body, #root {
     color: white;
     font-weight: 200;
     font-size: 16px;
-    font-family: 'Urbanist', sans-serif;
+    font-family: "Urbanist", sans-serif;
   }
-  
+
   .mobile-search-container {
     position: absolute;
     right: 64px;
@@ -820,18 +840,20 @@ html, body, #root {
     width: 0;
     height: 48px;
     overflow: hidden;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
     opacity: 0;
     z-index: 1001;
     pointer-events: none; /* Don't block clicks when hidden */
   }
-  
+
   .mobile-search-container.expanded {
     width: calc(100% - 80px); /* 16px padding + 64px offset */
     opacity: 1;
     pointer-events: auto;
   }
-  
+
   .mobile-search-input {
     width: 100%;
     height: 100%;
@@ -839,16 +861,16 @@ html, body, #root {
     border-radius: 24px;
     padding: 0 48px 0 20px;
     font-size: 16px;
-    font-family: 'Urbanist', sans-serif;
+    font-family: "Urbanist", sans-serif;
     outline: none;
     background: #f3f4f6; /* Light gray background for visibility without border */
     box-shadow: none;
   }
-  
+
   .mobile-search-input:focus {
     background: #e5e7eb; /* Slightly darker on focus */
   }
-  
+
   .mobile-search-btn {
     width: 40px;
     height: 40px;
@@ -866,16 +888,16 @@ html, body, #root {
     position: relative;
     z-index: 1002;
   }
-  
+
   .mobile-search-btn.active {
     background: #52525b;
     color: white;
   }
-  
+
   .mobile-search-btn:hover {
     transform: scale(1.05);
   }
-  
+
   /* ============================================
      MOBILE BOTTOM NAV
      ============================================ */
@@ -896,7 +918,7 @@ html, body, #root {
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .mobile-nav-item {
     width: 44px;
     height: 44px;
@@ -910,20 +932,20 @@ html, body, #root {
     cursor: pointer;
     transition: all 0.2s ease;
   }
-  
+
   .mobile-nav-item:hover {
     color: #52525b;
   }
-  
+
   .mobile-nav-item.active {
     background: #52525b;
     color: white;
   }
-  
+
   .mobile-nav-item .material-symbols-rounded {
     font-size: 24px;
   }
-  
+
   /* ============================================
      MOBILE CONTENT AREA
      ============================================ */
@@ -939,7 +961,7 @@ html, body, #root {
     left: 0;
     z-index: 100;
   }
-  
+
   .job-list {
     padding: 0 16px 150px 16px; /* Bottom padding on SCROLLABLE element */
   }
@@ -947,11 +969,11 @@ html, body, #root {
   .job-panel.hidden-on-mobile {
     display: none !important;
   }
-  
+
   .content-area {
     display: none;
   }
-  
+
   .content-area.mobile-visible {
     display: flex;
     position: fixed;
@@ -967,47 +989,46 @@ html, body, #root {
     background: transparent;
     pointer-events: none; /* Let clicks pass through transparent areas */
   }
-  
+
   .map-wrapper {
     height: 100%;
     width: 100%;
     border-radius: 32px; /* All corners rounded */
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     pointer-events: auto; /* Re-enable clicks on map */
   }
-  
+
   .filter-bar {
     display: none; /* Hide filter bar on mobile for cleaner look */
   }
-  
+
   /* Mobile Job Cards - Full Width, Larger */
   .job-card {
     border-radius: 20px;
     padding: 20px;
     margin: 8px 16px;
   }
-  
+
   .job-icon {
     width: 48px;
     height: 48px;
     border-radius: 14px;
   }
-  
+
   .job-title {
     font-size: 16px;
   }
-  
+
   .job-location {
     font-size: 14px;
   }
-  
+
   .job-description {
     font-size: 14px;
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
-  
 }
 
 /* Hide mobile elements on desktop */
@@ -1029,16 +1050,16 @@ html, body, #root {
 }
 
 .btn-shine::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    120deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.3), 
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
     transparent
   );
   transition: all 0.5s;

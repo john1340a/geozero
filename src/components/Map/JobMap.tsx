@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import type { JobOffer } from '../../types/job';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -172,26 +172,7 @@ export const JobMap = ({ jobs, selectedJob, onSelectJob, searchLocation, radius 
                 click: () => onSelectJob(job),
               }}
             >
-              <Popup>
-                <div style={{ padding: '8px 4px', minWidth: '180px' }}>
-                  <h4 style={{ 
-                    margin: '0 0 6px 0', 
-                    fontSize: '14px', 
-                    fontWeight: '600',
-                    color: '#1f2937'
-                  }}>
-                    {job.title}
-                  </h4>
-                  <p style={{ 
-                    margin: 0, 
-                    fontSize: '12px', 
-                    color: '#22c55e',
-                    fontWeight: '500'
-                  }}>
-                    📍 {job.city} ({job.department})
-                  </p>
-                </div>
-              </Popup>
+
             </Marker>
           )
         ))}
