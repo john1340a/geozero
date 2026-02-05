@@ -375,15 +375,15 @@ function App() {
               className={`mobile-nav-item ${isActive ? 'active' : ''}`}
               onClick={() => {
                 if (item.id === 'map') {
-                  // If opening map, must go to home view where map lives
-                  if (!showMobileMap) {
-                      setActivePage('home');
-                      setShowMobileMap(true);
-                  } else {
-                      // If closing map, stay on home (or revert? home is fine)
-                      setShowMobileMap(false);
-                  }
+                  // Always open map, never toggle off
+                  setActivePage('home');
+                  setShowMobileMap(true);
+                } else if (item.id === 'home') {
+                  // Always open list (hide map), stay on home page
+                  setActivePage('home');
+                  setShowMobileMap(false);
                 } else {
+                  // Other pages (Saved, Settings)
                   setShowMobileMap(false);
                   setActivePage(item.id);
                 }
