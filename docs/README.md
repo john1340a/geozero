@@ -11,6 +11,7 @@ Vous trouverez ci-dessous les détails sur les principales bibliothèques utilis
 - [**🔄 Données**](./libs/rss-parser.md) : Fast XML Parser (Parsing RSS)
 - [**⚙️ Core Stack**](./libs/core-stack.md) : React, Vite, TypeScript
 - [**🧪 Tests**](./libs/playwright.md) : Playwright (E2E Testing)
+- [**🚀 Déploiement**](./deployment.md) : CI/CD GitHub Actions → AlwaysData
 
 ## 🏗️ Structure du Projet
 
@@ -19,3 +20,4 @@ Vous trouverez ci-dessous les détails sur les principales bibliothèques utilis
 - `/src/services` : Logique métier (Parsing RSS, Géocodage, Base de données villes)
 - `/src/types` : Définitions TypeScript
 - `/tests` : Tests E2E Playwright
+- `/.github/workflows` : Pipelines CI/CD
