@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMap, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import type { JobOffer } from '../../types/job';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -93,10 +93,23 @@ interface JobMapProps {
 const MapResizer = () => {
   const map = useMap();
   useEffect(() => {
-    const timer = setTimeout(() => {
-      map.invalidateSize();
-    }, 100);
-    return () => clearTimeout(timer);
+    // Invalidate size immediately, and then a few times to catch transitions
+    const resize = () => map.invalidateSize();
+    
+    resize();
+    const t1 = setTimeout(resize, 100);
+    const t2 = setTimeout(resize, 300);
+    const t3 = setTimeout(resize, 600); // Late catch for slow mobile transitions
+
+    // Also listen to window resize
+    window.addEventListener('resize', resize);
+    
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('resize', resize);
+    };
   }, [map]);
   return null;
 };

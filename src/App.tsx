@@ -263,7 +263,9 @@ function App() {
                 </div>
 
                 <div className="map-wrapper">
+                  {/* Key forces remount on mobile toggle to fix tile grey issues */}
                   <JobMap 
+                    key={showMobileMap ? 'mobile-map' : 'desktop-map'}
                     jobs={filteredJobs} 
                     selectedJob={selectedJob}
                     onSelectJob={setSelectedJob}
