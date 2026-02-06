@@ -832,6 +832,160 @@ body,
     font-family: "Urbanist", sans-serif;
   }
 
+  .mobile-search-btn,
+  .mobile-filter-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .mobile-filter-btn {
+    margin-left: 8px; /* Space between search and filter */
+  }
+
+  .mobile-search-btn.active,
+  .mobile-filter-btn.active {
+    background: var(--color-primary-light); /* Zinc 600 matches DA */
+    color: white;
+  }
+
+  /* ... */
+
+  .mobile-chip.active {
+    background: var(--color-primary-light); /* Zinc 600 matches DA */
+    color: white;
+    border-color: var(--color-primary-light);
+    box-shadow: 0 4px 12px rgba(82, 82, 91, 0.3); /* Colored shadow based on Zinc 600 */
+    transform: translateY(-1px);
+    font-weight: 600;
+  }
+
+  /* Mobile Filter Overlay - Floating Card */
+  .mobile-filter-overlay {
+    position: fixed;
+    top: auto;
+    bottom: 80px; /* Align with bottom of map (above 60px nav + 20px padding) */
+    left: 16px;
+    right: 16px;
+    height: auto;
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    z-index: 2000;
+    border-radius: 24px;
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  /* ... animation ... */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .filter-handle-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 4px 0;
+  }
+
+  .filter-handle {
+    width: 48px;
+    height: 4px;
+    background: #d4d4d8; /* Zinc 300 - Softer than generic grey */
+    border-radius: 2px;
+  }
+
+  /* Expanded Filter UI */
+  .mobile-filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* More breathing room */
+    padding: 0 4px;
+  }
+
+  .mobile-filter-title {
+    font-size: 13px;
+    font-weight: 800; /* Extra bold */
+    color: var(--color-text-muted);
+    margin: 0 0 0 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 1;
+  }
+
+  /* Horizontal Scrollable Chips with Larger Touch Targets */
+  .mobile-filter-chips {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 0 24px; /* Align with title */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 20px; /* Increased to prevent shadow clipping */
+    margin-bottom: -10px; /* Counteract padding to keep layout tight */
+  }
+
+  .mobile-filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-chip {
+    flex: 0 0 auto;
+    padding: 12px 24px; /* Large touch target */
+    border-radius: 16px; /* Squircle */
+    border: 1px solid rgba(0,0,0,0.08); /* Subtle border */
+    background: rgba(255,255,255,0.8);
+    color: var(--color-text);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .mobile-chip:active {
+    transform: scale(0.96);
+  }
+
+  .mobile-chip.active {
+    background: var(--color-primary-light); /* Zinc 600 */
+    color: white;
+    border-color: var(--color-primary-light);
+    /* Softer, tighter shadow to match container better */
+    box-shadow: 0 4px 12px rgba(82, 82, 91, 0.20); 
+    transform: translateY(0); /* Remove lift to keep it grounded */
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
   .mobile-search-container {
     position: absolute;
     right: 64px;
