@@ -4,6 +4,7 @@ import {
   geocodeLocation,
   geocodeQuery,
   ensureDatabaseLoaded,
+  resolveLocationLocal,
 } from "./services/geocoding";
 import type { JobOffer } from "./types/job";
 import { Sidebar } from "./components/UI/Sidebar";
@@ -108,26 +109,63 @@ function App() {
       // Wait for DB to be ready before geocoding
       await dbPromise;
 
-      const geocodedJobs: JobOffer[] = [];
-      for (const job of parsedJobs) {
-        if ((job.city || job.department) && !job.coordinates) {
-          const coords = await geocodeLocation(job.city, job.department);
-          if (coords) {
-            geocodedJobs.push({ ...job, coordinates: coords });
+      // 1. Initial Pass: Resolve what we can LOCALLY (Sync)
+      // This is nearly instant and allows immediate rendering
+      const { resolvedJobs, needsApi } = parsedJobs.reduce(
+        (acc, job) => {
+          if ((job.city || job.department) && !job.coordinates) {
+             const localCoords = resolveLocationLocal(job.city, job.department);
+             if (localCoords) {
+                acc.resolvedJobs.push({ ...job, coordinates: localCoords });
+             } else {
+                // Keep distinct: needs API lookup
+                acc.resolvedJobs.push(job);
+                acc.needsApi.push(job);
+             }
           } else {
-            geocodedJobs.push(job);
+            acc.resolvedJobs.push(job);
           }
-        } else {
-          geocodedJobs.push(job);
-        }
+          return acc;
+        },
+        { resolvedJobs: [] as JobOffer[], needsApi: [] as JobOffer[] }
+      );
+
+      // Render immediately with mostly-complete data
+      setAllJobs(resolvedJobs);
+      setLoading(false);
+
+      // 2. Background Pass: API Lookup for missing ones
+      // This runs silently in background
+      if (needsApi.length > 0) {
+         let updated = false;
+         const finalJobs = [...resolvedJobs];
+         
+         const processQueue = async () => {
+             for (const job of needsApi) {
+                // Careful with rate limiting - handle one at a time or buffered
+                const coords = await geocodeLocation(job.city, job.department);
+                if (coords) {
+                   // Update the specific job in our local list
+                   const idx = finalJobs.findIndex(j => j.id === job.id);
+                   if (idx !== -1) {
+                       finalJobs[idx] = { ...finalJobs[idx], coordinates: coords };
+                       updated = true;
+                   }
+                }
+             }
+             
+             if (updated) {
+                 setAllJobs([...finalJobs]);
+             }
+         };
+         
+         processQueue();
       }
 
-      setAllJobs(geocodedJobs);
     } catch (error) {
       console.error("Failed to load jobs:", error);
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   // Debounced Search Geocoding
