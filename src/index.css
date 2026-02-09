@@ -804,6 +804,21 @@ body,
     display: none !important;
   }
 
+  /* Mobile View Toggles */
+  .hidden-on-mobile {
+    display: none !important;
+  }
+
+  .mobile-visible {
+    display: block !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60px; /* Above nav */
+    z-index: 10;
+  }
+
   /* ============================================
      MOBILE HEADER
      ============================================ */
@@ -878,7 +893,7 @@ body,
     right: 16px;
     height: auto;
     /* Glassmorphism */
-    background: rgba(255, 255, 255, 0.90);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
@@ -954,8 +969,8 @@ body,
     flex: 0 0 auto;
     padding: 12px 24px; /* Large touch target */
     border-radius: 16px; /* Squircle */
-    border: 1px solid rgba(0,0,0,0.08); /* Subtle border */
-    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Subtle border */
+    background: rgba(255, 255, 255, 0.8);
     color: var(--color-text);
     font-size: 15px;
     font-weight: 600;
@@ -965,7 +980,7 @@ body,
     align-items: center;
     gap: 8px;
     font-family: inherit;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   }
 
   .mobile-chip:active {
@@ -977,13 +992,19 @@ body,
     color: white;
     border-color: var(--color-primary-light);
     /* Softer, tighter shadow to match container better */
-    box-shadow: 0 4px 12px rgba(82, 82, 91, 0.20); 
+    box-shadow: 0 4px 12px rgba(82, 82, 91, 0.2);
     transform: translateY(0); /* Remove lift to keep it grounded */
   }
-  
+
   @keyframes slideDown {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   .mobile-search-container {

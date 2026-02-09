@@ -114,20 +114,20 @@ function App() {
       const { resolvedJobs, needsApi } = parsedJobs.reduce(
         (acc, job) => {
           if ((job.city || job.department) && !job.coordinates) {
-             const localCoords = resolveLocationLocal(job.city, job.department);
-             if (localCoords) {
-                acc.resolvedJobs.push({ ...job, coordinates: localCoords });
-             } else {
-                // Keep distinct: needs API lookup
-                acc.resolvedJobs.push(job);
-                acc.needsApi.push(job);
-             }
+            const localCoords = resolveLocationLocal(job.city, job.department);
+            if (localCoords) {
+              acc.resolvedJobs.push({ ...job, coordinates: localCoords });
+            } else {
+              // Keep distinct: needs API lookup
+              acc.resolvedJobs.push(job);
+              acc.needsApi.push(job);
+            }
           } else {
             acc.resolvedJobs.push(job);
           }
           return acc;
         },
-        { resolvedJobs: [] as JobOffer[], needsApi: [] as JobOffer[] }
+        { resolvedJobs: [] as JobOffer[], needsApi: [] as JobOffer[] },
       );
 
       // Render immediately with mostly-complete data
@@ -137,31 +137,30 @@ function App() {
       // 2. Background Pass: API Lookup for missing ones
       // This runs silently in background
       if (needsApi.length > 0) {
-         let updated = false;
-         const finalJobs = [...resolvedJobs];
-         
-         const processQueue = async () => {
-             for (const job of needsApi) {
-                // Careful with rate limiting - handle one at a time or buffered
-                const coords = await geocodeLocation(job.city, job.department);
-                if (coords) {
-                   // Update the specific job in our local list
-                   const idx = finalJobs.findIndex(j => j.id === job.id);
-                   if (idx !== -1) {
-                       finalJobs[idx] = { ...finalJobs[idx], coordinates: coords };
-                       updated = true;
-                   }
-                }
-             }
-             
-             if (updated) {
-                 setAllJobs([...finalJobs]);
-             }
-         };
-         
-         processQueue();
-      }
+        let updated = false;
+        const finalJobs = [...resolvedJobs];
 
+        const processQueue = async () => {
+          for (const job of needsApi) {
+            // Careful with rate limiting - handle one at a time or buffered
+            const coords = await geocodeLocation(job.city, job.department);
+            if (coords) {
+              // Update the specific job in our local list
+              const idx = finalJobs.findIndex((j) => j.id === job.id);
+              if (idx !== -1) {
+                finalJobs[idx] = { ...finalJobs[idx], coordinates: coords };
+                updated = true;
+              }
+            }
+          }
+
+          if (updated) {
+            setAllJobs([...finalJobs]);
+          }
+        };
+
+        processQueue();
+      }
     } catch (error) {
       console.error("Failed to load jobs:", error);
       setLoading(false);
@@ -236,7 +235,10 @@ function App() {
             <Sidebar
               jobs={filteredJobs}
               selectedJobId={selectedJob?.id}
-              onSelectJob={setSelectedJob}
+              onSelectJob={(job) => {
+                setSelectedJob(job);
+                setShowMobileMap(true); // Switch to map view on mobile to show details
+              }}
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
               onLocationSelect={(coords) => {
@@ -379,7 +381,7 @@ function App() {
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: "flex", gap: "8px" }}>
           <button
             className={`mobile-search-btn ${showMobileSearch ? "active" : ""}`}
             onClick={() => {
@@ -390,69 +392,69 @@ function App() {
             <Icon name={showMobileSearch ? "close" : "search"} size={20} />
           </button>
 
-          <button 
-              className={`mobile-filter-btn ${showMobileFilters ? 'active' : ''}`} 
-              onClick={() => {
-                  setShowMobileFilters(!showMobileFilters);
-                  setShowMobileSearch(false);
-              }}
-            >
-              <Icon name={showMobileFilters ? "close" : "tune"} size={20} />
-            </button>
+          <button
+            className={`mobile-filter-btn ${showMobileFilters ? "active" : ""}`}
+            onClick={() => {
+              setShowMobileFilters(!showMobileFilters);
+              setShowMobileSearch(false);
+            }}
+          >
+            <Icon name={showMobileFilters ? "close" : "tune"} size={20} />
+          </button>
         </div>
       </header>
 
       {/* Mobile Filter Overlay */}
       {showMobileFilters && (
         <div className="mobile-filter-overlay">
-           {/* Drag Handle */}
-           <div className="filter-handle-bar">
-             <div className="filter-handle" />
-           </div>
+          {/* Drag Handle */}
+          <div className="filter-handle-bar">
+            <div className="filter-handle" />
+          </div>
 
-           {/* Job Type Section */}
-           <div className="mobile-filter-section">
-              <h3 className="mobile-filter-title">Type de contrat</h3>
-              <div className="mobile-filter-chips">
-                  <button
-                    className={`mobile-chip ${jobTypeFilter === "Tous" ? 'active' : ''}`}
-                    onClick={() => setJobTypeFilter("Tous")}
-                  >
-                    Tous
-                  </button>
-                  {JOB_TYPES.filter(t => t !== "Tous").map(type => (
-                    <button
-                      key={type}
-                      className={`mobile-chip ${jobTypeFilter === type ? 'active' : ''}`}
-                      onClick={() => setJobTypeFilter(type)}
-                    >
-                      {type}
-                    </button>
-                  ))}
-              </div>
-           </div>
+          {/* Job Type Section */}
+          <div className="mobile-filter-section">
+            <h3 className="mobile-filter-title">Type de contrat</h3>
+            <div className="mobile-filter-chips">
+              <button
+                className={`mobile-chip ${jobTypeFilter === "Tous" ? "active" : ""}`}
+                onClick={() => setJobTypeFilter("Tous")}
+              >
+                Tous
+              </button>
+              {JOB_TYPES.filter((t) => t !== "Tous").map((type) => (
+                <button
+                  key={type}
+                  className={`mobile-chip ${jobTypeFilter === type ? "active" : ""}`}
+                  onClick={() => setJobTypeFilter(type)}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+          </div>
 
-           {/* Location Section */}
-           <div className="mobile-filter-section">
-              <h3 className="mobile-filter-title">Lieu</h3>
-              <div className="mobile-filter-chips">
-                  <button
-                    className={`mobile-chip ${!locationFilter ? 'active' : ''}`}
-                    onClick={() => setLocationFilter("")}
-                  >
-                    Partout
-                  </button>
-                  {uniqueLocations.map(loc => (
-                    <button
-                      key={loc}
-                      className={`mobile-chip ${locationFilter === loc ? 'active' : ''}`}
-                      onClick={() => setLocationFilter(loc)}
-                    >
-                      {loc}
-                    </button>
-                  ))}
-              </div>
-           </div>
+          {/* Location Section */}
+          <div className="mobile-filter-section">
+            <h3 className="mobile-filter-title">Lieu</h3>
+            <div className="mobile-filter-chips">
+              <button
+                className={`mobile-chip ${!locationFilter ? "active" : ""}`}
+                onClick={() => setLocationFilter("")}
+              >
+                Partout
+              </button>
+              {uniqueLocations.map((loc) => (
+                <button
+                  key={loc}
+                  className={`mobile-chip ${locationFilter === loc ? "active" : ""}`}
+                  onClick={() => setLocationFilter(loc)}
+                >
+                  {loc}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
