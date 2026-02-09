@@ -27,30 +27,33 @@ test.describe('Mobile Navigation & Map', () => {
   });
 
   test('should navigate to Map and display it', async ({ page }) => {
-    // 1. Initial State: Map hidden
+    // 1. Initial State: Map hidden (List view)
     const mapWrapper = page.locator('.map-wrapper');
     await expect(mapWrapper).not.toBeVisible();
 
-    // 2. Click "Carte" button
-    await page.getByTestId('mobile-nav-map').click();
+    // 2. Click "Carte" toggle button in header
+    await page.locator('.mobile-view-btn').click();
 
     // 3. Verify Map is now visible
     await expect(page.locator('.content-area')).toHaveClass(/mobile-visible/);
     await expect(mapWrapper).toBeVisible();
   });
 
-  test('should fix navigation bug: Saved -> Map', async ({ page }) => {
+  test('should navigate from Saved to Map correctly', async ({ page }) => {
     // 1. Go to "Favoris" (Saved)
     await page.getByTestId('mobile-nav-saved').click();
 
     // Verify we are on Saved page
     await expect(page.locator('text=Offres sauvegardées')).toBeVisible();
 
-    // 2. Click "Carte" directly
-    await page.getByTestId('mobile-nav-map').click();
+    // 2. Click "Accueil" to return to Home (List View default)
+    await page.getByTestId('mobile-nav-home').click();
+    await expect(page.locator('.mobile-view-btn')).toBeVisible();
 
-    // 3. Should switch to Home AND show Map
-    await expect(page.locator('text=Offres sauvegardées')).not.toBeVisible();
+    // 3. Click Toggle to show Map
+    await page.locator('.mobile-view-btn').click();
+
+    // 4. Verify Map is visible
     await expect(page.locator('.content-area')).toHaveClass(/mobile-visible/);
     await expect(page.locator('.map-wrapper')).toBeVisible();
   });
