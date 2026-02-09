@@ -848,13 +848,14 @@ body,
   }
 
   .mobile-search-btn,
-  .mobile-filter-btn {
+  .mobile-filter-btn,
+  .mobile-view-btn {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: none;
     background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Flat design requested */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -863,8 +864,13 @@ body,
     z-index: 1100;
   }
 
+  /* Search button should stay above others (especially when expanding) */
+  .mobile-search-btn {
+    z-index: 1105;
+  }
+
   .mobile-filter-btn {
-    margin-left: 8px; /* Space between search and filter */
+    margin-left: 0; /* Handled by flex gap in App.tsx */
   }
 
   .mobile-search-btn.active,
@@ -1094,6 +1100,10 @@ body,
     justify-content: space-around;
   }
 
+
+
+
+
   .mobile-nav-item {
     width: 44px;
     height: 44px;
@@ -1210,8 +1220,9 @@ body,
 @media (min-width: 769px) {
   .mobile-header,
   .mobile-nav,
-  .mobile-search-container {
-    display: none;
+  .mobile-search-container,
+  .mobile-toggle-pill {
+    display: none !important;
   }
 }
 

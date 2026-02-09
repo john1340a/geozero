@@ -46,7 +46,6 @@ const NAV_ITEMS: { id: NavPage; icon: string; label: string }[] = [
 // Mobile-specific nav items (includes map)
 const MOBILE_NAV_ITEMS: { id: NavPage; icon: string; label: string }[] = [
   { id: "home", icon: "home", label: "Accueil" },
-  { id: "map", icon: "map", label: "Carte" },
   { id: "saved", icon: "bookmark", label: "Favoris" },
   { id: "settings", icon: "settings", label: "Paramètres" },
 ];
@@ -382,6 +381,16 @@ function App() {
         </div>
 
         <div style={{ display: "flex", gap: "8px" }}>
+          {/* View Toggle (Map/List) */}
+          {!loading && activePage === "home" && !showMobileFilters && !showMobileSearch && (
+            <button
+              className="mobile-view-btn"
+              onClick={() => setShowMobileMap(!showMobileMap)}
+            >
+              <Icon name={showMobileMap ? "list_alt" : "map"} size={20} />
+            </button>
+          )}
+
           <button
             className={`mobile-search-btn ${showMobileSearch ? "active" : ""}`}
             onClick={() => {
@@ -407,7 +416,8 @@ function App() {
       {/* Mobile Filter Overlay */}
       {showMobileFilters && (
         <div className="mobile-filter-overlay">
-          {/* Drag Handle */}
+          {/* ... */}
+
           <div className="filter-handle-bar">
             <div className="filter-handle" />
           </div>
@@ -493,6 +503,8 @@ function App() {
         </div>
       )}
 
+
+
       {/* Mobile Bottom Nav */}
       <nav className="mobile-nav">
         {MOBILE_NAV_ITEMS.map((item) => {
@@ -508,11 +520,7 @@ function App() {
               data-testid={`mobile-nav-${item.id}`}
               className={`mobile-nav-item ${isActive ? "active" : ""}`}
               onClick={() => {
-                if (item.id === "map") {
-                  // Always open map, never toggle off
-                  setActivePage("home");
-                  setShowMobileMap(true);
-                } else if (item.id === "home") {
+                if (item.id === "home") {
                   // Always open list (hide map), stay on home page
                   setActivePage("home");
                   setShowMobileMap(false);
