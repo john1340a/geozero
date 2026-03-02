@@ -100,8 +100,30 @@ const fetchRSS = async () => {
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const text = await response.text();
 
+    // Guard: empty or non-XML response (feed down, error page, etc.)
+    if (!text || !text.trim()) {
+      throw new Error("RSS feed returned an empty response body");
+    }
+
+    if (!text.trim().startsWith("<?xml") && !text.trim().startsWith("<rss")) {
+      console.error(
+        "RSS feed returned unexpected content (first 500 chars):",
+        text.substring(0, 500),
+      );
+      throw new Error("RSS feed did not return valid XML");
+    }
+
     const parser = new XMLParser({ ignoreAttributes: false });
     const result = parser.parse(text);
+
+    // Guard: validate expected RSS structure
+    if (!result?.rss?.channel?.item) {
+      console.error(
+        "Parsed XML structure missing rss.channel.item. Top-level keys:",
+        Object.keys(result || {}),
+      );
+      throw new Error("RSS feed XML structure is invalid or has changed");
+    }
 
     const channelItems = result.rss.channel.item;
     const items = Array.isArray(channelItems) ? channelItems : [channelItems];
@@ -122,8 +144,7 @@ const fetchRSS = async () => {
         link,
         pubDate,
         company: item["dc:creator"] || "",
-        coordinates: null, // Coordinates will be handled by frontend or we could handle here if we had the DB?
-        // Frontend handles geocoding via local IndexedDB cache, which is better to keep there.
+        coordinates: null,
       };
     });
 
@@ -131,6 +152,17 @@ const fetchRSS = async () => {
     console.log(`Successfully wrote ${jobs.length} jobs to ${OUTPUT_FILE}`);
   } catch (error) {
     console.error("Error fetching/parsing RSS:", error);
+
+    // Graceful fallback: if jobs.json already exists, keep it and warn instead of failing the pipeline
+    if (fs.existsSync(OUTPUT_FILE)) {
+      console.warn(
+        `⚠ Keeping existing ${OUTPUT_FILE} — the RSS feed is temporarily unavailable.`,
+      );
+      process.exit(0);
+    }
+
+    // No existing file to fall back to — fail the build
+    console.error("No existing jobs.json to fall back to. Failing.");
     process.exit(1);
   }
 };
