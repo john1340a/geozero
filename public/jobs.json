@@ -1,5 +1,17 @@
 [
   {
+    "id": "https://georezo.net/forum/viewtopic.php?pid=376735#p376735",
+    "title": "Cartographe Secteur Fibre Optique H/f",
+    "type": "Intérim",
+    "city": "Base Dans Le",
+    "department": "74",
+    "description": "<div>Nous recherchons pour l'un de nos clients, soci&eacute;t&eacute; sp&eacute;cialis&eacute;e en construction de r&eacute;seaux, un Dessinateur&nbsp; Cartographe - Technicien SIG - R&eacute;seaux SECS h/f Vos missions seront de :- Qualification et l'int&eacute;gration &agrave; notre SIG (base QGIS), des donn&eacute;es de relev&eacute;s topographiques en classe A de r&eacute;seaux d'eau potable et d'assainissement ;- R&eacute;alisation de t&acirc;ches courantes d'exploitation - Mise &agrave; jour de plans, extractions de donn&eacute;es, ...).- Visite terrain ponctuelles possiblesDe formation de type BAC +2 &agrave; BAC +3 dans le domaine des SIG - G&eacute;omatiqueLa maitrise d'ArcGIS/QGIS&nbsp; - ET ATLASUn 1ere exp&eacute;rience dans le domaine des r&eacute;seaux est un plusContact : s.rio AT ltd-international.com</div>",
+    "link": "https://georezo.net/forum/viewtopic.php?pid=376735#p376735",
+    "pubDate": "Tue, 03 Mar 2026 11:13:23 +0100",
+    "company": "SOPHIE RIO",
+    "coordinates": null
+  },
+  {
     "id": "https://georezo.net/forum/viewtopic.php?pid=376734#p376734",
     "title": "Technicien/ne SIG",
     "type": "CDI",
@@ -225,18 +237,6 @@
     "link": "https://georezo.net/forum/viewtopic.php?pid=376620#p376620",
     "pubDate": "Thu, 19 Feb 2026 12:15:43 +0100",
     "company": "emarmotte",
-    "coordinates": null
-  },
-  {
-    "id": "https://georezo.net/forum/viewtopic.php?pid=376617#p376617",
-    "title": "Ingénieur(e) / géomaticien(ne) spécialiste SIG",
-    "type": "CDI",
-    "city": "Suisse",
-    "department": "",
-    "description": "<div>IG group SA, ing&eacute;nieurs &amp; g&eacute;om&egrave;tresRejoignez une &eacute;quipe jeune et dynamique, active dans les domaines de la g&eacute;omatiquePour renforcer notre d&eacute;partement de g&eacute;oinformation, nous recherchons pour notre bureau de Sion (Canton du Valais) un(e) ing&eacute;nieur(e) ou g&eacute;omaticien(ne) sp&eacute;cialiste SIG.Nous offrons&nbsp; &nbsp; - des projets int&eacute;ressants et vari&eacute;s dans le domaine de la g&eacute;oinformation aupr&egrave;s d'acteurs publics et priv&eacute;s&nbsp; &nbsp; - le d&eacute;veloppement de vos comp&eacute;tences en g&eacute;oinformatique dans le cadre de projets concrets et innovants&nbsp; &nbsp; - l'opportunit&eacute; de collaborer dans les projets des diff&eacute;rents d&eacute;partements&nbsp; &nbsp; - une ambiance de travail jeune et dynamique avec plusieurs sorties r&eacute;cr&eacute;atives durant les heures de bureau&nbsp; &nbsp; - un salaire adapt&eacute; &agrave; vos responsabilit&eacute;s ainsi qu'une LPP attractive&nbsp; &nbsp; - un horaire libre&nbsp; &nbsp; - la possibilit&eacute; de t&eacute;l&eacute;-travaillerMission- Maintenance et d&eacute;veloppement de solutions SIG (mobile et desktop)- Conception, d&eacute;veloppement et maintenance des g&eacute;oportails et SIG Web- D&eacute;veloppement et maintenance des solutions de gestion des cadastres souterrains- D&eacute;veloppement et maintenance des flux de donn&eacute;es g&eacute;ographiques- Migration et pr&eacute;paration de donn&eacute;es g&eacute;ographiquesComp&eacute;tences personnelles- Ing&eacute;nieur de niveau bachelor ou CFC de g&eacute;omaticien- Grand int&eacute;r&ecirc;t pour les SIG et la g&eacute;oinformatique- Autonomie d'apprentissage et de r&eacute;alisation- Organis&eacute;, rigoureux et esprit d'initiative- Capable de travailler de mani&egrave;re autonome et en &eacute;quipe- Capable de g&eacute;rer plusieurs projets en parall&egrave;leComp&eacute;tences techniques- FME / FME flow- QGIS (configuration avanc&eacute;e et d&eacute;veloppement)- PostgreSQL - PostGIS- Mapserver- Lev&eacute; GNSS- Suite MicrosoftDes connaissances en syst&egrave;mes d'informations g&eacute;ographiques (SIG) ou la volont&eacute; d'acqu&eacute;rir ces comp&eacute;tences seraient un avantage :- Suite TEKSI et/ou exp&eacute;rience dans les cadastres souterrains- Mensuration officielle et g&eacute;odonn&eacute;es publiques- QField- ArcGIS Pro- Javascript et framework WebGIS- Python- GitNous nous r&eacute;jouissons de recevoir votre dossier par mailet nous restons &agrave; disposition pour toutes questions.IG group Data solutions SARte de Chandoline 25 b - 1950 Siongeoinformation AT ig-group.chLien vers l'annonce sur notre site : <a href=\"https://www.ig-group.ch/ingenieure-geomaticien-specialiste-sig/\">https://www.ig-group.ch/ingenieure-geom ... liste-sig/</a></div>",
-    "link": "https://georezo.net/forum/viewtopic.php?pid=376617#p376617",
-    "pubDate": "Thu, 19 Feb 2026 11:26:24 +0100",
-    "company": "geoinformation_iggroup_ch",
     "coordinates": null
   }
 ]
