@@ -1,5 +1,17 @@
 [
   {
+    "id": "https://georezo.net/forum/viewtopic.php?pid=377073#p377073",
+    "title": "Certification des adresses",
+    "type": "Stage",
+    "city": "Mairie de Noisy-le-Grand",
+    "department": "93",
+    "description": "<div>Offre de stage - Appui cartographique - Certification des adresses Service SIG - Ville de Noisy-le-Grand| Intitul&eacute; du stage | Appui cartographique - Certification des adresses || Dur&eacute;e | 3 &agrave; 6 mois|| Date de d&eacute;but souhait&eacute;e | Mai 2026 |<strong>Contexte et enjeux</strong>La ville de Noisy-le-Grand dispose d'un service SIG centralisant les donn&eacute;es territoriales, dont les adresses. Ces derni&egrave;res sont essentielles pour les applications m&eacute;tiers des services publics, la s&eacute;curit&eacute; civile, la livraison, et la planification urbaine. Cependant, l'exactitude et l'exhaustivit&eacute; de ces donn&eacute;es doivent &ecirc;tre v&eacute;rifi&eacute;es et certifi&eacute;es pour garantir leur fiabilit&eacute;.Dans ce cadre, le service SIG recherche un&middot;e stagiaire pour participer &agrave; la mission de certification des adresses de la ville, en collaboration avec les services techniques et les partenaires institutionnels.<strong>Missions principales</strong>*&nbsp; &nbsp; Recensement et v&eacute;rification : identifier les anomalies (doublons, adresses manquantes, incoh&eacute;rences).*&nbsp; &nbsp; Qualification des donn&eacute;es : Croiser les informations avec les sources officielles (cadastre et bases de donn&eacute;es en opendata).*&nbsp; &nbsp; Mise &agrave; jour du SIG : Int&eacute;grer les corrections et les nouvelles adresses dans la base de donn&eacute;es g&eacute;ographique.Profil recherch&eacute;*&nbsp; &nbsp; Formation : &Eacute;tudiant&middot;e en g&eacute;ographie, urbanisme, am&eacute;nagement du territoire (sp&eacute;cialisation SIG appr&eacute;ci&eacute;e). Licence ou Master.*&nbsp; &nbsp; Comp&eacute;tences techniques : Ma&icirc;trise de l'outil ArcGIS, connaissance des bases de donn&eacute;es, notions en gestion de donn&eacute;es.*&nbsp; &nbsp; Qualit&eacute;s personnelles : Rigueur, sens de l'organisation, capacit&eacute; &agrave; travailler en &eacute;quipe, int&eacute;r&ecirc;t pour les enjeux de la donn&eacute;e publique.Modalit&eacute;s de candidatureVous pouvez postuler &agrave; l'offre via ce lien <a href=\"https://www.noisylegrand.fr/votre-mairie/services-municipaux/la-ville-recrute/consulter-les-offres/stage-appui-cartographique-certification-des-adresses\">https://www.noisylegrand.fr/votre-mairi ... s-adresses</a>.Pourquoi nous rejoindre ?*&nbsp; &nbsp; Participer &agrave; un projet concret au service des habitants et de la ville.*&nbsp; &nbsp; Acqu&eacute;rir une exp&eacute;rience valorisante dans le domaine des SIG et de la gestion de donn&eacute;es territoriales.*&nbsp; &nbsp; Int&eacute;grer une &eacute;quipe dynamique et pluridisciplinaire.</div>",
+    "link": "https://georezo.net/forum/viewtopic.php?pid=377073#p377073",
+    "pubDate": "Thu, 02 Apr 2026 13:13:18 +0200",
+    "company": "sig_nlg",
+    "coordinates": null
+  },
+  {
     "id": "https://georezo.net/forum/viewtopic.php?pid=377060#p377060",
     "title": "Apprenti geomaticien F/H",
     "type": "Autre",
@@ -225,18 +237,6 @@
     "link": "https://georezo.net/forum/viewtopic.php?pid=376919#p376919",
     "pubDate": "Mon, 23 Mar 2026 13:13:14 +0100",
     "company": "SOPHIE RIO",
-    "coordinates": null
-  },
-  {
-    "id": "https://georezo.net/forum/viewtopic.php?pid=376917#p376917",
-    "title": "Analyste images et profils H/F",
-    "type": "CDD",
-    "city": "Lyon (69) ou Clermont",
-    "department": "63",
-    "description": "<div>L'Agence de services et de paiement (ASP) est un &eacute;tablissement public enti&egrave;rement d&eacute;di&eacute; &agrave; la mise en oeuvre de politiques publiques au niveau europ&eacute;en, national et territorial. <strong>Premier payeur europ&eacute;en d'aides agricoles</strong>, l'ASP verse chaque ann&eacute;e environ, 8.5 milliards d'euros dans le cadre de la politique agricole commune (PAC).Int&eacute;gr&eacute;(e) au sein de la direction r&eacute;gionale ASP Auvergne-Rh&ocirc;ne-Alpes (&agrave; Lyon ou &agrave; Clermont), vous utiliserez des photos a&eacute;riennes, des images satellites et des r&eacute;sultats d'analyse issus d'une intelligence artificielle pour v&eacute;rifier la conformit&eacute; des d&eacute;clarations des exploitants agricoles aux aides de la PACVous analyserez&nbsp; via un SIG d&eacute;di&eacute; les crit&egrave;res d'admissibilit&eacute; des parcelles d&eacute;clar&eacute;es par les exploitants .Vous pourrez &eacute;ventuellement participer aux d&eacute;placements terrain en cas d'expertise images non conclusive.<strong> Profil recherch&eacute;</strong> : Bac, BTS, licence et masterCapacit&eacute; d'analyse- AutonomieRigueur- Aisance informatique <strong>Conditions :</strong> CDD de mi-juin &agrave; fin aout R&eacute;mun&eacute;ration de 1920 &agrave; 2410 euros brut mensuel selon exp&eacute;rienceFormation incluse dans le contratPour postuler envoyer CV et lettre de motivation &agrave; recrutement-ara AT asp.gouv.fr&nbsp; (en pr&eacute;cisant le lieu d'affectation souhait&eacute; Lyon ou Clermont-Ferrand)</div>",
-    "link": "https://georezo.net/forum/viewtopic.php?pid=376917#p376917",
-    "pubDate": "Mon, 23 Mar 2026 11:02:59 +0100",
-    "company": "annelaure.guillebert",
     "coordinates": null
   }
 ]
